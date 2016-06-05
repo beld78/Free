@@ -34,7 +34,7 @@ public class SortPlayerListInChallongeFormatUI {
 					break;
 				case 1:
 					System.out.println("entering format UI");
-					startFormatUI();
+					startFormat();
 
 				}
 
@@ -45,10 +45,14 @@ public class SortPlayerListInChallongeFormatUI {
 		}
 	}
 
-	public void startFormatUI() {
+	public void startFormat() {
 		createGroups();
 		createParticipants();
 		writeParticipantsInGroups();
+		writeOutputFile();
+	}
+
+	private void writeOutputFile() {
 		try {
 			path = helper.askNonEmptyString("Enter path to save file with participants");
 			Path textPath = Paths.get(path);
