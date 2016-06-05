@@ -59,7 +59,12 @@ public class SortPlayerListInChallongeFormatUI {
 			try (BufferedWriter bw = Files.newBufferedWriter(textPath)) {
 				for (int i = 0; i < groups.size(); i++) {
 					for (int z = 0; z < groups.get(i).length; z++) {
-						bw.write(groups.get(i)[z]);
+						String currentLine = groups.get(i)[z];
+						int removeNumber = currentLine.indexOf(".");
+						if (removeNumber != -1) {
+							currentLine = currentLine.substring(removeNumber + 2);
+						}
+						bw.write(currentLine);
 						bw.newLine();
 					}
 				}
