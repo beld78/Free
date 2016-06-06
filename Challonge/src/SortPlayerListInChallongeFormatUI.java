@@ -77,11 +77,25 @@ public class SortPlayerListInChallongeFormatUI {
 
 	private void writeParticipantsInGroups() {
 		for (int i = 0; i < amountOfPersonsPerGroup; i++) {
+			int startAtEndOfGroup = amountOfGroups - 1;
 			for (int z = 0; z < amountOfGroups; z++) {
-				groups.get(z)[i] = participants.get(participantPlace);
+				// go backwards
+				if (!isEven(i)) {
+					groups.get(startAtEndOfGroup)[i] = participants.get(participantPlace);
+					startAtEndOfGroup--;
+				} else {
+					groups.get(z)[i] = participants.get(participantPlace);
+				}
 				participantPlace++;
 			}
 		}
+	}
+
+	private boolean isEven(int counter) {
+		while (counter > 1) {
+			counter -= 2;
+		}
+		return counter == 0;
 	}
 
 	private void createParticipants() {
